@@ -92,4 +92,152 @@ func (s *StackBanker) DoBuz() { fmt.Println("银行职员进行了股票的业�
 
 当增加车辆或者司机的时候，不会对原有的代码进行破坏
 
+接口的意义:
+实现多态 调用未来
+
 #### 1.3、依赖倒转原则
+
+依赖于抽象 而不是依赖于具体的类
+
+高耦合度的代码:
+
+```go
+package main
+
+import "fmt"
+
+// === > 奔驰汽车 <===
+type Benz struct {
+
+}
+
+func (this *Benz) Run() {
+	fmt.Println("Benz is running...")
+}
+
+// === > 宝马汽车  <===
+type BMW struct {
+
+}
+
+func (this *BMW) Run() {
+	fmt.Println("BMW is running ...")
+}
+
+
+//===> 司机张三  <===
+type Zhang3 struct {
+	//...
+}
+
+func (zhang3 *Zhang3) DriveBenZ(benz *Benz) {
+	fmt.Println("zhang3 Drive Benz")
+	benz.Run()
+}
+
+func (zhang3 *Zhang3) DriveBMW(bmw *BMW) {
+	fmt.Println("zhang3 drive BMW")
+	bmw.Run()
+}
+
+//===> 司机李四 <===
+type Li4 struct {
+	//...
+}
+
+func (li4 *Li4) DriveBenZ(benz *Benz) {
+	fmt.Println("li4 Drive Benz")
+	benz.Run()
+}
+
+func (li4 *Li4) DriveBMW(bmw *BMW) {
+	fmt.Println("li4 drive BMW")
+	bmw.Run()
+}
+
+func main() {
+	//业务1 张3开奔驰
+	benz := &Benz{}
+	zhang3 := &Zhang3{}
+	zhang3.DriveBenZ(benz)
+
+	//业务2 李四开宝马
+	bmw := &BMW{}
+	li4 := &Li4{}
+	li4.DriveBMW(bmw)
+}
+```
+
+我们将这种代码改成面对抽象层依赖倒转
+
+```go
+package main
+
+import "fmt"
+
+// ===== >   抽象层  < ========
+type Car interface {
+	Run()
+}
+
+type Driver interface {
+	Drive(car Car)
+}
+
+// ===== >   实现层  < ========
+type BenZ struct {
+	//...
+}
+
+func (benz * BenZ) Run() {
+	fmt.Println("Benz is running...")
+}
+
+type Bmw struct {
+	//...
+}
+
+func (bmw * Bmw) Run() {
+	fmt.Println("Bmw is running...")
+}
+
+type Zhang_3 struct {
+	//...
+}
+
+func (zhang3 *Zhang_3) Drive(car Car) {
+	fmt.Println("Zhang3 drive car")
+	car.Run()
+}
+
+type Li_4 struct {
+	//...
+}
+
+func (li4 *Li_4) Drive(car Car) {
+	fmt.Println("li4 drive car")
+	car.Run()
+}
+
+
+// ===== >   业务逻辑层  < ========
+func main() {
+	//张3 开 宝马
+	var bmw Car
+	bmw = &Bmw{}
+
+	var zhang3 Driver
+	zhang3 = &Zhang_3{}
+
+	zhang3.Drive(bmw)
+
+	//李4 开 奔驰
+	var benz Car
+	benz = &BenZ{}
+
+	var li4 Driver
+	li4 = &Li_4{}
+
+	li4.Drive(benz)
+}
+```
