@@ -1,0 +1,17 @@
+syntax="proto3";
+
+package v1;
+
+option go_package="./;v1";
+
+service FiberService{
+    rpc Signup(SignupRequest) returns (SignupResponse){};
+    rpc Login(LoginRequest) returns (LoginResponse){};
+}
+
+message SignupRequest{
+    
+}
+message SignupResponse{}
+message LoginRequest{}
+message LoginResponse{}
