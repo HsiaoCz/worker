@@ -22,7 +22,7 @@ func (cb *CatB) Sleep() {
 }
 
 // 给小猫添加睡觉的方法
-// 通过组合的方式
+// 过组合的方式
 
 type CatC struct {
 	Ca Cat
