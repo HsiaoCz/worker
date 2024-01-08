@@ -311,6 +311,7 @@ func main() {
 
 }
 ```
+
 #### 1.6、合成复用原则
 
 如果使用继承 会导致父类的任何变换都可能影响到子类，使用组合，则降低了这种
@@ -365,4 +366,59 @@ func main() {
 	cc.Ca.Eat() // 组合
 }
 
+```
+
+#### 1.7、迪米特法则
+
+一个对象应当对其他对象尽可能少的了解，从而降低各个对象之间的耦合，提高系统的可维护性。例如在一个程序中，各个模块之间相互调用时，通常会提供一个统一的接口来实现。这样其他模块不需要了解另外一个模块的内部实现细节，这样当一个模块内部的实现发生改变时，不会影响其他模块的使用。（黑盒原理）
+
+```go
+package main
+
+import "fmt"
+
+// 迪米特法则
+// 一个对象应该对其他对象尽可能少的了解
+// 从而降低各个系统之间的耦合 提高系统的可维护性
+// 迪米特法则 又叫最少知道原则
+// 如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用
+
+type Student struct {
+	Id   string
+	Name string
+}
+
+type Class struct {
+	Id       string
+	Name     string
+	Students []Student
+}
+
+func (c Class) PrintStudents() {
+	for _, student := range c.Students {
+		fmt.Println(student)
+	}
+}
+
+type School struct {
+	Id      string
+	Name    string
+	Classes []Class
+}
+
+// 这里 school 与 student 没有直接的关系
+func (s School) PrintAllStudents() {
+
+	// 高耦合度的写法
+	// for _, class := range s.Classes {
+	// 	for _, student := range class.Students {
+	// 		fmt.Println(student)
+	// 	}
+	// }
+
+	// 降低了依赖关系的写法
+	for _, class := range s.Classes {
+		class.PrintStudents()
+	}
+}
 ```
