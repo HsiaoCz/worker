@@ -6,6 +6,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.52.0
 	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.32.0
+	nhooyr.io/websocket v1.8.10
 )
 
 require (
