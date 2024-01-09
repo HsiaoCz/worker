@@ -422,3 +422,143 @@ func (s School) PrintAllStudents() {
 	}
 }
 ```
+
+### 2、设计模式
+
+#### 2.1、简单工厂模式
+
+如果没有工厂类
+
+```go
+package main
+
+import "fmt"
+
+//水果类
+type Fruit struct {
+	//...
+	//...
+	//...
+}
+
+func (f *Fruit) Show(name string) {
+	if name == "apple" {
+		fmt.Println("我是苹果")
+	} else if name == "banana" {
+		fmt.Println("我是香蕉")
+	} else if name == "pear" {
+		fmt.Println("我是梨")
+	}
+}
+
+//创建一个Fruit对象
+func NewFruit(name string) *Fruit {
+	fruit := new(Fruit)
+
+	if name == "apple" {
+		//创建apple逻辑
+	} else if name == "banana" {
+		//创建banana逻辑
+	} else if name == "pear" {
+		//创建pear逻辑
+	}
+
+	return fruit
+}
+
+func main() {
+	apple := NewFruit("apple")
+	apple.Show("apple")
+
+	banana := NewFruit("banana")
+	banana.Show("banana")
+
+	pear := NewFruit("pear")
+	pear.Show("pear")
+}
+```
+
+不难看出，Fruit 类是一个“巨大的”类，在该类的设计中存在如下几个问题：
+(1) 在 Fruit 类中包含很多“if…else…”代码块，整个类的代码相当冗长，代码越长，阅读难度、维护难度和测试难度也越大；而且大量条件语句的存在还将影响系统的性能，程序在执行过程中需要做大量的条件判断。
+(2) Fruit 类的职责过重，它负责初始化和显示所有的水果对象，将各种水果对象的初始化代码和显示代码集中在一个类中实现，违反了“单一职责原则”，不利于类的重用和维护；  
+(3) 当需要增加新类型的水果时，必须修改 Fruit 类的构造函数 NewFruit()和其他相关方法源代码，违反了“开闭原则”
+
+简单工厂模式
+
+```go
+package main
+
+import "fmt"
+
+// 简单工厂模式
+// 工厂（Factory）角色：简单工厂模式的核心，它负责实现创建所有实例的内部逻辑。
+// 工厂类可以被外界直接调用，创建所需的产品对象。
+// 抽象产品（AbstractProduct）角色：简单工厂模式所创建的所有对象的父类，它负责描述所有实例所共有的公共接口。
+// 具体产品（Concrete Product）角色：简单工厂模式所创建的具体实例对象
+
+// ======= 抽象层 =========
+
+// 水果类(抽象接口)
+type Fruit interface {
+	Show() //接口的某方法
+}
+
+// ======= 基础类模块 =========
+
+type Apple struct {
+	Fruit //为了易于理解显示继承(此行可以省略)
+}
+
+func (apple *Apple) Show() {
+	fmt.Println("我是苹果")
+}
+
+type Banana struct {
+	Fruit
+}
+
+func (banana *Banana) Show() {
+	fmt.Println("我是香蕉")
+}
+
+type Pear struct {
+	Fruit
+}
+
+func (pear *Pear) Show() {
+	fmt.Println("我是梨")
+}
+
+// ========= 工厂模块  =========
+// 一个工厂， 有一个生产水果的机器，返回一个抽象水果的指针
+type Factory struct{}
+
+func (fac *Factory) CreateFruit(kind string) Fruit {
+	var fruit Fruit
+
+	if kind == "apple" {
+		fruit = new(Apple)
+	} else if kind == "banana" {
+		fruit = new(Banana)
+	} else if kind == "pear" {
+		fruit = new(Pear)
+	}
+
+	return fruit
+}
+
+// ==========业务逻辑层==============
+func main() {
+	factory := new(Factory)
+
+	apple := factory.CreateFruit("apple")
+	apple.Show()
+
+	banana := factory.CreateFruit("banana")
+	banana.Show()
+
+	pear := factory.CreateFruit("pear")
+	pear.Show()
+}
+```
+
