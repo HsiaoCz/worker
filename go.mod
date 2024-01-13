@@ -4,6 +4,7 @@ go 1.21.3
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.0
+	github.com/gorilla/websocket v1.5.1
 	google.golang.org/grpc v1.60.1
 	google.golang.org/protobuf v1.32.0
 	nhooyr.io/websocket v1.8.10
