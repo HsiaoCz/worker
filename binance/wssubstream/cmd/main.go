@@ -13,10 +13,19 @@ func main() {
 	// 		"btcusdt@depth",
 	// 	},
 	// }, handlemessage.HandleOrderBookDepth)
+
 	wss.WSGetBookTicker(endpoints.BookTicker, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"bnbustd@bookTicker",
+			"bnbusdt@bookTicker",
 		},
+		"id": "1",
 	}, handlemessage.HandleBookTicker)
+	// wss.GetCountSetSymbol(endpoints.CountSetSymbol, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbbtc@aggtrade",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleCountSet)
 }
