@@ -5,11 +5,12 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/HsiaoCz/worker/binance/wssubstream/data"
 	"github.com/HsiaoCz/worker/binance/wssubstream/safe"
 	"github.com/gorilla/websocket"
 )
 
-func WSGetBookTicker(endpoint string, sendMessage map[string]any, handleMessage func(message map[string]any)) {
+func WSGetBookTicker(endpoint string, sendMessage map[string]any, handleMessage func(data *data.BookTicker)) {
 	dial := websocket.Dialer{
 		Proxy:            http.ProxyFromEnvironment,
 		HandshakeTimeout: 10 * time.Second,
@@ -23,7 +24,7 @@ func WSGetBookTicker(endpoint string, sendMessage map[string]any, handleMessage 
 		log.Println("send message err:", err)
 		return
 	}
-	var recvMessage map[string]any
+	var data = new(data.BookTicker)
 	safe.Wg.Add(1)
 	go func() {
 		defer safe.Wg.Done()
@@ -32,12 +33,12 @@ func WSGetBookTicker(endpoint string, sendMessage map[string]any, handleMessage 
 			if flag == 19 {
 				break
 			}
-			if err := conn.ReadJSON(&recvMessage); err != nil {
+			if err := conn.ReadJSON(data); err != nil {
 				log.Println("Read message err:", err)
 				flag++
 				continue
 			}
-			handleMessage(recvMessage)
+			handleMessage(data)
 		}
 	}()
 	safe.Wg.Wait()
@@ -57,7 +58,7 @@ func GetOrderBookDepth(endpoint string, sendMessage map[string]any, handleMessag
 		log.Println("send message err:", err)
 		return
 	}
-	var recvMessage map[string]any
+	var data map[string]any
 	safe.Wg.Add(1)
 	go func() {
 		defer safe.Wg.Done()
@@ -66,12 +67,12 @@ func GetOrderBookDepth(endpoint string, sendMessage map[string]any, handleMessag
 			if flag == 19 {
 				break
 			}
-			if err := conn.ReadJSON(&recvMessage); err != nil {
+			if err := conn.ReadJSON(data); err != nil {
 				log.Println("recv message err:", err)
 				flag++
 				continue
 			}
-			handleMessage(recvMessage)
+			handleMessage(data)
 		}
 	}()
 	safe.Wg.Wait()

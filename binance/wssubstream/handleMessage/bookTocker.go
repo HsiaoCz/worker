@@ -1,7 +1,11 @@
 package handlemessage
 
-import "fmt"
+import (
+	"fmt"
 
-func HandleBookTicker(message map[string]any) {
-	fmt.Println(message)
+	"github.com/HsiaoCz/worker/binance/wssubstream/data"
+)
+
+func HandleBookTicker(data *data.BookTicker) {
+	fmt.Println(data)
 }
