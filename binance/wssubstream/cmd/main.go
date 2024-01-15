@@ -28,11 +28,18 @@ func main() {
 	// 	},
 	// 	"id": "1",
 	// }, handlemessage.HandleCountSet)
-	wss.GetDealTrade(endpoints.EveryDealTrade, map[string]any{
+	// wss.GetDealTrade(endpoints.EveryDealTrade, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbbtc@trade",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleDealTrade)
+	wss.GetKlines(endpoints.Klines, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"bnbbtc@trade",
+			"bnbbtc@kline_1",
 		},
 		"id": "1",
-	}, handlemessage.HandleDealTrade)
+	}, handlemessage.HandleKlines)
 }
