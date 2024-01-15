@@ -14,13 +14,13 @@ func main() {
 	// 	},
 	// }, handlemessage.HandleOrderBookDepth)
 
-	wss.WSGetBookTicker(endpoints.BookTicker, map[string]any{
-		"method": "SUBSCRIBE",
-		"params": []string{
-			"bnbusdt@bookTicker",
-		},
-		"id": "1",
-	}, handlemessage.HandleBookTicker)
+	// wss.WSGetBookTicker(endpoints.BookTicker, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbusdt@bookTicker",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleBookTicker)
 	// wss.GetCountSetSymbol(endpoints.CountSetSymbol, map[string]any{
 	// 	"method": "SUBSCRIBE",
 	// 	"params": []string{
@@ -28,4 +28,11 @@ func main() {
 	// 	},
 	// 	"id": "1",
 	// }, handlemessage.HandleCountSet)
+	wss.GetDealTrade(endpoints.EveryDealTrade, map[string]any{
+		"method": "SUBSCRIBE",
+		"params": []string{
+			"bnbbtc@trade",
+		},
+		"id": "1",
+	}, handlemessage.HandleDealTrade)
 }
