@@ -35,11 +35,19 @@ func main() {
 	// 	},
 	// 	"id": "1",
 	// }, handlemessage.HandleDealTrade)
-	wss.GetKlines(endpoints.Klines, map[string]any{
+	// wss.GetKlines(endpoints.Klines, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbbtc@kline_1",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleKlines)
+
+	wss.GetMiniSymbolTicker(endpoints.MinSymbolTicker, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"bnbbtc@kline_1",
+			"bnbbtc@miniTicker",
 		},
 		"id": "1",
-	}, handlemessage.HandleKlines)
+	}, handlemessage.HandleMiniSymbolTicker)
 }
