@@ -1483,3 +1483,83 @@ func main() {
 	iphone.Charge()
 }
 ```
+
+#### 2.8、外观模式
+
+根据迪米特法则，如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用
+Facade 模式也叫外观模式，是由 GoF 提出的 23 种设计模式中的一种。Facade 模式为一组具有类似功能的类群，
+比如类库，子系统等等，提供一个一致的简单的界面。这个一致的简单的界面被称作 facade。
+
+**外观模式中的角色与职责**
+
+Façade(外观角色)：为调用方, 定义简单的调用接口。
+SubSystem(子系统角色)：功能提供者。指提供功能的类群（模块或子系统）
+
+```go
+package main
+
+import "fmt"
+
+type SubSystemA struct {}
+
+func (sa *SubSystemA) MethodA() {
+	fmt.Println("子系统方法A")
+}
+
+type SubSystemB struct {}
+
+func (sb *SubSystemB) MethodB() {
+	fmt.Println("子系统方法B")
+}
+
+type SubSystemC struct {}
+
+func (sc *SubSystemC) MethodC() {
+	fmt.Println("子系统方法C")
+}
+
+type SubSystemD struct {}
+
+func (sd *SubSystemD) MethodD() {
+	fmt.Println("子系统方法D")
+}
+
+//外观模式，提供了一个外观类， 简化成一个简单的接口供使用
+type Facade struct {
+	a *SubSystemA
+	b *SubSystemB
+	c *SubSystemC
+	d *SubSystemD
+}
+
+func (f *Facade) MethodOne() {
+	f.a.MethodA()
+	f.b.MethodB()
+}
+
+
+func (f *Facade) MethodTwo() {
+	f.c.MethodC()
+	f.d.MethodD()
+}
+
+func main() {
+	//如果不用外观模式实现MethodA() 和 MethodB()
+	sa := new(SubSystemA)
+	sa.MethodA()
+	sb := new(SubSystemB)
+	sb.MethodB()
+
+	fmt.Println("-----------")
+	//使用外观模式
+	f := Facade{
+		a: new(SubSystemA),
+		b: new(SubSystemB),
+		c: new(SubSystemC),
+		d: new(SubSystemD),
+	}
+
+	//调用外观包裹方法
+	f.MethodOne()
+}
+```
