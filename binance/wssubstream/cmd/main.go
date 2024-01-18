@@ -43,11 +43,19 @@ func main() {
 	// 	"id": "1",
 	// }, handlemessage.HandleKlines)
 
-	wss.GetMiniSymbolTicker(endpoints.MinSymbolTicker, map[string]any{
+	// wss.GetMiniSymbolTicker(endpoints.MinSymbolTicker, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbbtc@miniTicker",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleMiniSymbolTicker)
+
+	wss.GetSymbolTicker(endpoints.SymbolTicker, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"bnbbtc@miniTicker",
+			"bnbbtc@ticker",
 		},
 		"id": "1",
-	}, handlemessage.HandleMiniSymbolTicker)
+	}, handlemessage.HandleSymbolTicker)
 }
