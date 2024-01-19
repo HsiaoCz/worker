@@ -8,4 +8,6 @@ var (
 	Klines          = "wss://stream.binance.com:9443/ws/bnbbtc@kline_1"
 	MinSymbolTicker = "wss://stream.binance.com:9443/ws/bnbbtc@miniTicker"
 	SymbolTicker    = "wss://stream.binance.com:9443/ws/bnbbtc@ticker"
+	AllSymbolTicker = "wss://stream.binance.com:9443/ws/!ticker@arr"
+	AvgPrice  ="wss://stream.binance.com:9443/ws/btcusdt@avgPrice"
 )

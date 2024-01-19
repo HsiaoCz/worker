@@ -51,11 +51,27 @@ func main() {
 	// 	"id": "1",
 	// }, handlemessage.HandleMiniSymbolTicker)
 
-	wss.GetSymbolTicker(endpoints.SymbolTicker, map[string]any{
+	// wss.GetSymbolTicker(endpoints.SymbolTicker, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"bnbbtc@ticker",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleSymbolTicker)
+
+	// wss.GetAllTicker(endpoints.AllSymbolTicker, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"!ticker@arr",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleAllTicker)
+
+	wss.GetAvgPrice(endpoints.AvgPrice, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"bnbbtc@ticker",
+			"btcusdt@avgPrice",
 		},
 		"id": "1",
-	}, handlemessage.HandleSymbolTicker)
+	}, handlemessage.HandleAvgPrice)
 }

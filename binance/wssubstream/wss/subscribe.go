@@ -250,3 +250,73 @@ func GetSymbolTicker(endpoint string, sendMessage map[string]any, handleMessage 
 	}()
 	safe.Wg.Wait()
 }
+
+// all ticker
+func GetAllTicker(endpoint string, sendMessage map[string]any, handleMessage func(data []any)) {
+	dial := websocket.Dialer{
+		Proxy:            http.ProxyFromEnvironment,
+		HandshakeTimeout: 10 * time.Second,
+	}
+	conn, _, err := dial.Dial(endpoint, nil)
+	if err != nil {
+		log.Println("dial err:", err)
+		return
+	}
+	if err := conn.WriteJSON(sendMessage); err != nil {
+		log.Println("write json err:", err)
+		return
+	}
+	var data []any
+	safe.Wg.Add(1)
+	go func() {
+		defer safe.Wg.Done()
+		var flag int
+		for {
+			if flag == 19 {
+				break
+			}
+			if err := conn.ReadJSON(&data); err != nil {
+				log.Println("read message err:", err)
+				flag++
+				continue
+			}
+			handleMessage(data)
+		}
+	}()
+	safe.Wg.Wait()
+}
+
+// avg price
+func GetAvgPrice(endpoint string, sendMessage map[string]any, handleMessage func(data map[string]any)) {
+	dial := websocket.Dialer{
+		Proxy:            http.ProxyFromEnvironment,
+		HandshakeTimeout: 10 * time.Second,
+	}
+	conn, _, err := dial.Dial(endpoint, nil)
+	if err != nil {
+		log.Println("dial err:", err)
+		return
+	}
+	if err := conn.WriteJSON(sendMessage); err != nil {
+		log.Println("write json err:", err)
+		return
+	}
+	var data map[string]any
+	safe.Wg.Add(1)
+	go func() {
+		defer safe.Wg.Done()
+		var flag int
+		for {
+			if flag == 19 {
+				break
+			}
+			if err := conn.ReadJSON(&data); err != nil {
+				log.Println("read message err:", err)
+				flag++
+				continue
+			}
+			handleMessage(data)
+		}
+	}()
+	safe.Wg.Wait()
+}
