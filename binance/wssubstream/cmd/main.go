@@ -83,11 +83,19 @@ func main() {
 	// 	"id": "1",
 	// }, handlemessage.HandleDepthLevel)
 
-	wss.GetSymbolAddDepth(endpoints.SymbolAddDepth, map[string]any{
+	//wss.GetSymbolAddDepth(endpoints.SymbolAddDepth, map[string]any{
+	//	"method": "SUBSCRIBE",
+	//	"params": []string{
+	//		"btcusdt@depth",
+	//	},
+	//	"id": "1",
+	//}, handlemessage.HandleAddSymbolDepth)
+
+	wss.GetSymbolTickerWindows(endpoints.SymbolTickerWindows, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"btcusdt@depth",
+			"btcusdt@ticker_1h",
 		},
 		"id": "1",
-	}, handlemessage.HandleAddSymbolDepth)
+	}, handlemessage.HandleSymbolTickerWindows)
 }
