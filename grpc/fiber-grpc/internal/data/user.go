@@ -11,3 +11,7 @@ type User struct {
 	// 头像
 	Vargar string
 }
+
+func (u User) TableName() string {
+	return "user"
+}

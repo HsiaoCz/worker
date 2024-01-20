@@ -20,3 +20,8 @@ func (c *Context) JSON(code int, value any) {
 	c.Resp.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(c.Resp).Encode(value)
 }
+
+func (c *Context) Status(code int) *Context {
+	c.Resp.WriteHeader(code)
+	return c
+}

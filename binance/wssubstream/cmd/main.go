@@ -67,11 +67,19 @@ func main() {
 	// 	"id": "1",
 	// }, handlemessage.HandleAllTicker)
 
-	wss.GetAvgPrice(endpoints.AvgPrice, map[string]any{
+	//wss.GetAvgPrice(endpoints.AvgPrice, map[string]any{
+	//	"method": "SUBSCRIBE",
+	//	"params": []string{
+	//		"btcusdt@avgPrice",
+	//	},
+	//	"id": "1",
+	//	}, handlemessage.HandleAvgPrice)
+
+	wss.GetSymbolTickerDepthLevel(endpoints.SymbolDepthLevel, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"btcusdt@avgPrice",
+			"btcusdt@depth20",
 		},
 		"id": "1",
-	}, handlemessage.HandleAvgPrice)
+	}, handlemessage.HandleDepthLevel)
 }
