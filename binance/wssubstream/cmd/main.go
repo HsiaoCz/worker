@@ -75,11 +75,19 @@ func main() {
 	//	"id": "1",
 	//	}, handlemessage.HandleAvgPrice)
 
-	wss.GetSymbolTickerDepthLevel(endpoints.SymbolDepthLevel, map[string]any{
+	// wss.GetSymbolTickerDepthLevel(endpoints.SymbolDepthLevel, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"btcusdt@depth20",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleDepthLevel)
+
+	wss.GetSymbolAddDepth(endpoints.SymbolAddDepth, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"btcusdt@depth20",
+			"btcusdt@depth",
 		},
 		"id": "1",
-	}, handlemessage.HandleDepthLevel)
+	}, handlemessage.HandleAddSymbolDepth)
 }

@@ -11,4 +11,5 @@ var (
 	AllSymbolTicker  = "wss://stream.binance.com:9443/ws/!ticker@arr"
 	AvgPrice         = "wss://stream.binance.com:9443/ws/btcusdt@avgPrice"
 	SymbolDepthLevel = "wss://stream.binance.com:9443/ws/btcusdt@depth20"
+	SymbolAddDepth   = "wss://stream.binance.com:9443/ws/btcusdt@depth"
 )
