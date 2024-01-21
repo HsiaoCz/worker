@@ -91,11 +91,19 @@ func main() {
 	//	"id": "1",
 	//}, handlemessage.HandleAddSymbolDepth)
 
-	wss.GetSymbolTickerWindows(endpoints.SymbolTickerWindows, map[string]any{
+	//	wss.GetSymbolTickerWindows(endpoints.SymbolTickerWindows, map[string]any{
+	//		"method": "SUBSCRIBE",
+	//		"params": []string{
+	//			"btcusdt@ticker_1h",
+	//		},
+	//		"id": "1",
+	//	}, handlemessage.HandleSymbolTickerWindows)
+
+	wss.GetSymbolAllMarketTickerWindows(endpoints.AllMarketTicker, map[string]any{
 		"method": "SUBSCRIBE",
 		"params": []string{
-			"btcusdt@ticker_1h",
+			"!ticker_1h@arr",
 		},
 		"id": "1",
-	}, handlemessage.HandleSymbolTickerWindows)
+	}, handlemessage.HandleAllMarkrtTicker)
 }
