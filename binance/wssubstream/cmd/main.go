@@ -1,8 +1,9 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/HsiaoCz/worker/binance/wssubstream/endpoints"
-	handlemessage "github.com/HsiaoCz/worker/binance/wssubstream/handleMessage"
 	"github.com/HsiaoCz/worker/binance/wssubstream/wss"
 )
 
@@ -99,11 +100,14 @@ func main() {
 	//		"id": "1",
 	//	}, handlemessage.HandleSymbolTickerWindows)
 
-	wss.GetSymbolAllMarketTickerWindows(endpoints.AllMarketTicker, map[string]any{
-		"method": "SUBSCRIBE",
-		"params": []string{
-			"!ticker_1h@arr",
-		},
-		"id": "1",
-	}, handlemessage.HandleAllMarkrtTicker)
+	// wss.GetSymbolAllMarketTickerWindows(endpoints.AllMarketTicker, map[string]any{
+	// 	"method": "SUBSCRIBE",
+	// 	"params": []string{
+	// 		"!ticker_1h@arr",
+	// 	},
+	// 	"id": "1",
+	// }, handlemessage.HandleAllMarkrtTicker)
+
+	listenKey := wss.GetListenKey(fmt.Sprintf("%s%s", endpoints.BaseURL, endpoints.ListenKeyURL))
+	fmt.Println(listenKey)
 }
