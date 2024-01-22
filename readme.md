@@ -3,3 +3,4 @@ something i know But i don't know
 
 ## 1、设计原则与设计模式
 
+why the go lsp not effect?

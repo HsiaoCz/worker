@@ -25,9 +25,7 @@ type UserLogin struct {
 	Email    string `json:"email"`
 }
 
-var (
-	userServiceAddr = "127.0.0.1:9001"
-)
+var userServiceAddr = "127.0.0.1:9001"
 
 func HandleUserSignup(c *fiber.Ctx) error {
 	var usersp UserSignup
@@ -83,5 +81,26 @@ func HandleUserSignup(c *fiber.Ctx) error {
 }
 
 func HandleUserLogin(c *fiber.Ctx) error {
-	return nil
+	userl := new(UserLogin)
+	if err := c.BodyParser(userl); err != nil {
+		return err
+	}
+	conn, err := grpc.Dial(userServiceAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Millisecond*1500)
+	defer cancel()
+
+	client := v1.NewFiberServiceClient(conn)
+	loginResponse, err := client.Login(ctx, &v1.LoginRequest{Username: userl.Username, Password: userl.Password, Email: userl.Email})
+	if err != nil {
+		return err
+	}
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"StatusCode": loginResponse.GetStatusCode(),
+		"Message":    loginResponse.GetMsg(),
+	})
 }
