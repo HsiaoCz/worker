@@ -33,14 +33,12 @@ type School struct {
 
 // 这里 school 与 student 没有直接的关系
 func (s School) PrintAllStudents() {
-	
 	// 高耦合度的写法
 	// for _, class := range s.Classes {
 	// 	for _, student := range class.Students {
 	// 		fmt.Println(student)
 	// 	}
 	// }
-	
 	// 降低了依赖关系的写法
 	for _, class := range s.Classes {
 		class.PrintStudents()
