@@ -10,7 +10,8 @@ import (
 var (
 	ngrokSkip     = "ngrok-skip-browser-warning"
 	ngrokValue    = "69420"
-	getMessageUrl = "https://cea6-58-19-1-21.ngrok-free.app/api/getMeetingRoomList"
+	getMessageUrl = "http://127.0.0.1:9001/api/meetingRoomList"
+	// getMessageUrl = "https://mp.weixin.qq.com/api/meetingRoomList"
 )
 
 func LoginWithSkip(url string) {
@@ -34,12 +35,12 @@ func LoginWithSkip(url string) {
 		return
 	}
 	defer res.Body.Close()
-
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
 		log.Println(err)
 		return
 	}
+	fmt.Println(req.URL)
 	fmt.Println(string(body))
 }
 
@@ -68,6 +69,7 @@ func LoginNotWithSkip(url string) {
 		log.Println(err)
 		return
 	}
+	fmt.Println(req.URL)
 	fmt.Println(string(body))
 }
 
