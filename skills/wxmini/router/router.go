@@ -2,8 +2,13 @@ package router
 
 import "github.com/gin-gonic/gin"
 
-func Route(addr string) error {
-	r := gin.Default()
+func Route(mode string, addr string) error {
+	if mode == gin.ReleaseMode {
+		gin.SetMode(gin.ReleaseMode)
+	}
+	gin.SetMode(gin.DebugMode)
+	r := gin.New()
+	r.Use()
 	api := r.Group("/api")
 	{
 		user := api.Group("/user")
