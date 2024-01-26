@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/HsiaoCz/worker/skills/wxmini/logger"
+	"github.com/gin-gonic/gin"
+)
 
 func Route(mode string, addr string) error {
 	if mode == gin.ReleaseMode {
@@ -8,7 +11,7 @@ func Route(mode string, addr string) error {
 	}
 	gin.SetMode(gin.DebugMode)
 	r := gin.New()
-	r.Use()
+	r.Use(logger.GinLogger(), logger.GinRecovery(true))
 	api := r.Group("/api")
 	{
 		user := api.Group("/user")
