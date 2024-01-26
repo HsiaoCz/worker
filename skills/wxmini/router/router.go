@@ -1,6 +1,7 @@
 package router
 
 import (
+	v1 "github.com/HsiaoCz/worker/skills/wxmini/api/v1"
 	"github.com/HsiaoCz/worker/skills/wxmini/logger"
 	"github.com/gin-gonic/gin"
 )
@@ -16,8 +17,8 @@ func Route(mode string, addr string) error {
 	{
 		user := api.Group("/user")
 		{
-			user.POST("/signup")
-			user.POST("/login")
+			user.POST("/signup", v1.HandleUserSignup)
+			user.POST("/login", v1.HandleUserLogin)
 		}
 	}
 	return r.Run(addr)
