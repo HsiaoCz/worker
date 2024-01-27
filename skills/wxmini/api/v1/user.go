@@ -1,10 +1,34 @@
 package v1
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
-type UserLogin struct{}
+	"github.com/gin-gonic/gin"
+)
 
-type UserSignup struct{}
+type UserLogin struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Email    string `json:"email"`
+}
 
-func HandleUserSignup(c *gin.Context) {}
-func HandleUserLogin(c *gin.Context)  {}
+type UserSignup struct {
+	Username   string `json:"username"`
+	Password   string `json:"password"`
+	RePassword string `json:"re_password"`
+	Email      string `json:"email"`
+}
+
+func HandleUserSignup(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"Message": "Signup success",
+		"Code":    http.StatusOK,
+	})
+}
+
+func HandleUserLogin(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{
+		"Message": "login success",
+		"Code":    http.StatusOK,
+	})
+}
