@@ -1,9 +1,9 @@
 app:
   name: "wxmini"
-  mode: "dev"
-  app_port: "9091"
+  mode: "debug"
+  app_port: "127.0.0.1:9093"
   version: "v0.0.1"
-  start_time: "2020-07-01"
+  start_time: "2023-03-01"
   machine_id: 1
 
 log:

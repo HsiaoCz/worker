@@ -30,7 +30,7 @@ func Init() error {
 		return err
 	}
 	var core zapcore.Core
-	if cfg.AppConfig.Mode == "dev" {
+	if cfg.AppConfig.Mode == "debug" {
 		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
 		core = zapcore.NewTee(
 			zapcore.NewCore(encoder, writerSyncer, l),

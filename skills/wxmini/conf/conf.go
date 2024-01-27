@@ -10,7 +10,7 @@ import (
 var Conf = &WebAppConfig{}
 
 type WebAppConfig struct {
-	AppConfig   AppConfig   `mapsturcture:"app"`
+	AppConfig   AppConfig   `mapstructure:"app"`
 	LogConfig   LogConfig   `mapstructure:"log"`
 	MysqlConfig MysqlConfig `mapstructure:"mysql"`
 	RedisConfig RedisConfig `mapstructure:"redis"`
@@ -30,7 +30,7 @@ type LogConfig struct {
 	Filename  string `mapstructure:"filename"`
 	MaxSize   int    `mapstructure:"max_size"`
 	MaxAge    int    `mapstructure:"max_age"`
-	MaxBackup int    `mapstructure:"max_backup"`
+	MaxBackup int    `mapstructure:"max_backups"`
 }
 
 type MysqlConfig struct {

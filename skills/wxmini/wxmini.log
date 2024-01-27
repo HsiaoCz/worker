@@ -1,0 +1,36 @@
+{"level":"DEBUG","time":"2024-01-27T23:46:15.024+0800","caller":"cmd/main.go:31","msg":"logger init success"}
+{"level":"INFO","time":"2024-01-27T23:46:58.048+0800","caller":"logger/logger.go:78","msg":"/api/user/login","status":200,"method":"POST","path":"/api/user/login","query":"","ip":"127.0.0.1","user-agent":"Thunder Client (https://www.thunderclient.com)","errors":"","cost":0.000031122}
+{"level":"INFO","time":"2024-01-27T23:49:06.311+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:06.311+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:10.595+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:10.596+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:11.799+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:11.800+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:11.937+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:11.937+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:15.291+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:15.291+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:15.787+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:49:15.787+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"DEBUG","time":"2024-01-27T23:50:14.537+0800","caller":"cmd/main.go:26","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-27T23:52:05.270+0800","caller":"cmd/main.go:27","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-27T23:53:28.421+0800","caller":"cmd/main.go:32","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-27T23:55:46.948+0800","caller":"cmd/main.go:33","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-27T23:56:31.826+0800","caller":"cmd/main.go:33","msg":"logger init success"}
+{"level":"INFO","time":"2024-01-27T23:57:55.813+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:57:55.813+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:57:56.899+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:57:56.902+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:58:01.323+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:58:01.324+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:58:02.286+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-27T23:58:02.287+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"DEBUG","time":"2024-01-28T00:00:40.546+0800","caller":"cmd/main.go:33","msg":"logger init success"}
+{"level":"INFO","time":"2024-01-28T00:02:13.212+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-28T00:02:13.212+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-28T00:02:13.369+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"INFO","time":"2024-01-28T00:02:13.369+0800","caller":"conf/conf.go:74","msg":"配置文件修改了.."}
+{"level":"DEBUG","time":"2024-01-28T00:03:15.432+0800","caller":"cmd/main.go:33","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-28T00:04:17.234+0800","caller":"cmd/main.go:28","msg":"logger init success"}
+{"level":"DEBUG","time":"2024-01-28T00:04:33.608+0800","caller":"cmd/main.go:26","msg":"logger init success"}
+{"level":"INFO","time":"2024-01-28T00:05:02.864+0800","caller":"logger/logger.go:78","msg":"/api/user/login","status":200,"method":"POST","path":"/api/user/login","query":"","ip":"127.0.0.1","user-agent":"Thunder Client (https://www.thunderclient.com)","errors":"","cost":0.000034053}
