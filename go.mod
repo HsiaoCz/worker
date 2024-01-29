@@ -3,6 +3,7 @@ module github.com/HsiaoCz/worker
 go 1.21.3
 
 require (
+	github.com/a-h/templ v0.2.543
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/gin-gonic/gin v1.9.1
