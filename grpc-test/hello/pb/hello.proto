@@ -9,7 +9,7 @@ service Hello{
 }
 
 message HelloRequest{
-    string username=1;
+  string username=1;
     string msg=2;
     string content=3;
 }

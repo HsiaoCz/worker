@@ -51,3 +51,7 @@ func HandleUserLogin(c *gin.Context) {
 		"Code":    http.StatusOK,
 	})
 }
+
+func HandleUserModefy(c *gin.Context){
+   
+}
