@@ -25,3 +25,8 @@ func HandleButton(w http.ResponseWriter, r *http.Request) {
 	button := hello.Button(string(text))
 	button.Render(context.Background(), w)
 }
+
+func HandleImages(w http.ResponseWriter, r *http.Request) {
+	comp := hello.Comp()
+	comp.Render(context.Background(), w)
+}
