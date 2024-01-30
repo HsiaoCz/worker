@@ -1,5 +1,15 @@
 package user
 
-templ Show() {
-	<h1>Hello from the user page</h1>
+import "github.com/HsiaoCz/worker/goTempl/view/layout"
+import "github.com/HsiaoCz/worker/goTempl/model"
+import "github.com/HsiaoCz/worker/goTempl/view/components"
+
+templ Show(user model.User) {
+	@layout.Base() {
+		<h1>Hello { user.Email }from the user page</h1>
+		@components.Input(components.InputProps{
+			Typ:  "email",
+			Name: "email",
+		})
+	}
 }
