@@ -1,7 +1,24 @@
 package userview
 
 import "github.com/HsiaoCz/worker/kanye/models"
+import "github.com/HsiaoCz/worker/kanye/view/layoutview"
+import "github.com/HsiaoCz/worker/kanye/view/components"
 
 templ Show(user models.User) {
-    
+	@layoutview.Base() {
+		<h1>Hello { user.Username } from the user page</h1>
+		@components.Input(components.InputType{
+			Typ:  "email",
+			Name: "email",
+		})
+	}
+}
+
+templ ShowUserInfo(user models.User) {
+	@layoutview.Base() {
+		<h1>Hello { user.Username } from the user page</h1>
+		<div>
+			Your Email:	{ user.Email }
+		</div>
+	}
 }

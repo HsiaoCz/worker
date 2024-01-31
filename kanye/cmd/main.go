@@ -21,5 +21,6 @@ func main() {
 	}))
 	userCase := handler.UserCase{}
 	app.Get("/user/show", userCase.HandlerUserShow)
+	app.Get("/user/show/email", userCase.HandleUserShowEmial)
 	app.Listen("192.168.206.1:9006")
 }
