@@ -1,0 +1,18 @@
+package userve
+
+import "github.com/HsiaoCz/worker/stdtempl/view/layoute"
+import "github.com/HsiaoCz/worker/stdtempl/data"
+import "github.com/HsiaoCz/worker/stdtempl/view/comps"
+
+templ Show(user data.User) {
+	@layoute.Base() {
+		<h1>Hello my man { user.Username } please input your email:</h1>
+		@comps.Input(comps.InputType{
+			Typ:  "email",
+			Name: "email",
+		})
+		<h1>
+			Hello my man your email: { user.Email } your content { user.Content }
+		</h1>
+	}
+}
