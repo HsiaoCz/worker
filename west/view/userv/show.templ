@@ -1,0 +1,31 @@
+package userv
+
+import "github.com/HsiaoCz/worker/west/model"
+import "github.com/HsiaoCz/worker/west/view/layout"
+import "github.com/HsiaoCz/worker/west/view/comp"
+
+templ  Show(user model.User) {
+	@layout.Base() {
+		<h1>Hello { user.Username } please input your email:</h1>
+		@comp.Input(comp.InputType{
+			Typ:  "email",
+			Name: "email",
+		})
+	}
+}
+
+templ ShowUserInfo(user model.User) {
+	@layout.Base() {
+		<h1>
+			Hello { user.Username } your email: { user.Email }
+		</h1>
+	}
+}
+
+templ ShowUserContent(user model.User) {
+	@layout.Base() {
+		<h1>
+			Hello { user.Username } Your content: { user.Content }
+		</h1>
+	}
+}
