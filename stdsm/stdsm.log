@@ -1,0 +1,1 @@
+{"level":"INFO","time":"2024-02-04T23:54:01.320+0800","caller":"cmd/main.go:29","msg":"the http server is running","Addr":"192.168.206.1:9009"}
