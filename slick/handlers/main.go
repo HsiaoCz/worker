@@ -29,7 +29,7 @@ func main() {
 }
 
 func ResponseJSON(w http.ResponseWriter, code int, v any) {
-	w.WriteHeader(code)
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
 	json.NewEncoder(w).Encode(v)
 }
