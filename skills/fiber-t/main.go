@@ -5,11 +5,13 @@ import (
 	"time"
 
 	"github.com/HsiaoCz/worker/skills/fiber-t/handlers"
+	"github.com/HsiaoCz/worker/skills/fiber-t/slogger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
+	slogger.InitLogger()
 	app := fiber.New()
 	app.Use(logger.New(logger.Config{
 		Next:         nil,
