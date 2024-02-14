@@ -14,4 +14,11 @@ func main() {
 		},
 		"id": "1",
 	}, handlemessage.HandleSymbolTicker)
+	wss.GetOrderBookDepth(endpoints.OrderBook, map[string]any{
+		"method": "SUBSCRIBE",
+		"params": []string{
+			"bntustd@depth",
+		},
+		"id": "1",
+	}, handlemessage.HandleOrderBook)
 }
