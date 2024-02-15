@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package pb;
+
+option go_package ="./;pb";
+
+service Moo{
+    rpc Login (LoginRequest) returns (LoginResponse){}
+}
+
+message LoginRequest{
+    string username=1;
+    string password=2;
+}
+message LoginResponse{
+   int64 code=1;
+   string msg=2;
+}
