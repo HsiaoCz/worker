@@ -6,11 +6,23 @@ option go_package="./;pbo";
 
 service Leo{
     rpc Signup(SignupRequest) returns (SignupResponse){}
-    rpc Login(LoginReqest) returns (LoginResponse){}
+    rpc Login(LoginRequest) returns (LoginResponse){}
 }
 
-message SignupRequest{}
-message SignupResponse{}
-message LoginReqest{}
+message SignupRequest{
+    string username=1;
+    string password=2;
+    string rePassword=3;
+    string email=4;
+}
+
+message SignupResponse{
+    string msg=1;
+}
+message LoginRequest{
+    string username=1;
+    string password=2;
+    string email=3;
+}
 message LoginResponse{}
 

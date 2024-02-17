@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type LeoClient interface {
 	Signup(ctx context.Context, in *SignupRequest, opts ...grpc.CallOption) (*SignupResponse, error)
-	Login(ctx context.Context, in *LoginReqest, opts ...grpc.CallOption) (*LoginResponse, error)
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
 }
 
 type leoClient struct {
@@ -48,7 +48,7 @@ func (c *leoClient) Signup(ctx context.Context, in *SignupRequest, opts ...grpc.
 	return out, nil
 }
 
-func (c *leoClient) Login(ctx context.Context, in *LoginReqest, opts ...grpc.CallOption) (*LoginResponse, error) {
+func (c *leoClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error) {
 	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, Leo_Login_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -62,7 +62,7 @@ func (c *leoClient) Login(ctx context.Context, in *LoginReqest, opts ...grpc.Cal
 // for forward compatibility
 type LeoServer interface {
 	Signup(context.Context, *SignupRequest) (*SignupResponse, error)
-	Login(context.Context, *LoginReqest) (*LoginResponse, error)
+	Login(context.Context, *LoginRequest) (*LoginResponse, error)
 	mustEmbedUnimplementedLeoServer()
 }
 
@@ -73,7 +73,7 @@ type UnimplementedLeoServer struct {
 func (UnimplementedLeoServer) Signup(context.Context, *SignupRequest) (*SignupResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Signup not implemented")
 }
-func (UnimplementedLeoServer) Login(context.Context, *LoginReqest) (*LoginResponse, error) {
+func (UnimplementedLeoServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
 func (UnimplementedLeoServer) mustEmbedUnimplementedLeoServer() {}
@@ -108,7 +108,7 @@ func _Leo_Signup_Handler(srv interface{}, ctx context.Context, dec func(interfac
 }
 
 func _Leo_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LoginReqest)
+	in := new(LoginRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -120,7 +120,7 @@ func _Leo_Login_Handler(srv interface{}, ctx context.Context, dec func(interface
 		FullMethod: Leo_Login_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LeoServer).Login(ctx, req.(*LoginReqest))
+		return srv.(LeoServer).Login(ctx, req.(*LoginRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
