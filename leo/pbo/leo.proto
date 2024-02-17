@@ -1,0 +1,16 @@
+syntax="proto3";
+
+package pbo;
+
+option go_package="./;pbo";
+
+service Leo{
+    rpc Signup(SignupRequest) returns (SignupResponse){}
+    rpc Login(LoginReqest) returns (LoginResponse){}
+}
+
+message SignupRequest{}
+message SignupResponse{}
+message LoginReqest{}
+message LoginResponse{}
+
