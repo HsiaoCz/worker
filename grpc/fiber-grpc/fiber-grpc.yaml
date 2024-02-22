@@ -1,3 +1,18 @@
 app:
   addr: 127.0.0.1:9001
-  
+  start_time: "2024-01-01"
+  machine_id: 1
+
+mysql:
+   host: "127.0.0.1"
+   port: "3306"
+   user: "root"
+   password: "shaw123"
+   dbname: "fiber-grpc"
+
+log:
+  level: "debug"
+  filename: "fiber.log"
+  max_size: 200
+  max_age: 30
+  max_backups: 7
