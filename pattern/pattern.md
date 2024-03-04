@@ -1,8 +1,8 @@
-## 设计原则与设计模式
+# 设计原则与设计模式
 
-### 1、设计原则
+## 1、设计原则
 
-#### 1.1、单一职责原则
+### 1.1、单一职责原则
 
 单一职责原则：类的职责单一，对外只提供一种功能，而且引起类变化的原因只有一个
 
@@ -72,7 +72,7 @@ func (s *shoppingdress)OnShoppingDress(){
 // 基于开闭原则的代码设计
 
 type Banker interface {
-	DoBuz()
+ DoBuz()
 }
 
 type SaveBanker struct{}
@@ -95,7 +95,7 @@ func (s *StackBanker) DoBuz() { fmt.Println("银行职员进行了股票的业�
 接口的意义:
 实现多态 调用未来
 
-#### 1.3、依赖倒转原则
+### 1.3、依赖倒转原则
 
 依赖于抽象 而不是依赖于具体的类
 
@@ -112,7 +112,7 @@ type Benz struct {
 }
 
 func (this *Benz) Run() {
-	fmt.Println("Benz is running...")
+ fmt.Println("Benz is running...")
 }
 
 // === > 宝马汽车  <===
@@ -121,50 +121,50 @@ type BMW struct {
 }
 
 func (this *BMW) Run() {
-	fmt.Println("BMW is running ...")
+ fmt.Println("BMW is running ...")
 }
 
 
 //===> 司机张三  <===
 type Zhang3 struct {
-	//...
+ //...
 }
 
 func (zhang3 *Zhang3) DriveBenZ(benz *Benz) {
-	fmt.Println("zhang3 Drive Benz")
-	benz.Run()
+ fmt.Println("zhang3 Drive Benz")
+ benz.Run()
 }
 
 func (zhang3 *Zhang3) DriveBMW(bmw *BMW) {
-	fmt.Println("zhang3 drive BMW")
-	bmw.Run()
+ fmt.Println("zhang3 drive BMW")
+ bmw.Run()
 }
 
 //===> 司机李四 <===
 type Li4 struct {
-	//...
+ //...
 }
 
 func (li4 *Li4) DriveBenZ(benz *Benz) {
-	fmt.Println("li4 Drive Benz")
-	benz.Run()
+ fmt.Println("li4 Drive Benz")
+ benz.Run()
 }
 
 func (li4 *Li4) DriveBMW(bmw *BMW) {
-	fmt.Println("li4 drive BMW")
-	bmw.Run()
+ fmt.Println("li4 drive BMW")
+ bmw.Run()
 }
 
 func main() {
-	//业务1 张3开奔驰
-	benz := &Benz{}
-	zhang3 := &Zhang3{}
-	zhang3.DriveBenZ(benz)
+ //业务1 张3开奔驰
+ benz := &Benz{}
+ zhang3 := &Zhang3{}
+ zhang3.DriveBenZ(benz)
 
-	//业务2 李四开宝马
-	bmw := &BMW{}
-	li4 := &Li4{}
-	li4.DriveBMW(bmw)
+ //业务2 李四开宝马
+ bmw := &BMW{}
+ li4 := &Li4{}
+ li4.DriveBMW(bmw)
 }
 ```
 
@@ -177,72 +177,72 @@ import "fmt"
 
 // ===== >   抽象层  < ========
 type Car interface {
-	Run()
+ Run()
 }
 
 type Driver interface {
-	Drive(car Car)
+ Drive(car Car)
 }
 
 // ===== >   实现层  < ========
 type BenZ struct {
-	//...
+ //...
 }
 
 func (benz * BenZ) Run() {
-	fmt.Println("Benz is running...")
+ fmt.Println("Benz is running...")
 }
 
 type Bmw struct {
-	//...
+ //...
 }
 
 func (bmw * Bmw) Run() {
-	fmt.Println("Bmw is running...")
+ fmt.Println("Bmw is running...")
 }
 
 type Zhang_3 struct {
-	//...
+ //...
 }
 
 func (zhang3 *Zhang_3) Drive(car Car) {
-	fmt.Println("Zhang3 drive car")
-	car.Run()
+ fmt.Println("Zhang3 drive car")
+ car.Run()
 }
 
 type Li_4 struct {
-	//...
+ //...
 }
 
 func (li4 *Li_4) Drive(car Car) {
-	fmt.Println("li4 drive car")
-	car.Run()
+ fmt.Println("li4 drive car")
+ car.Run()
 }
 
 
 // ===== >   业务逻辑层  < ========
 func main() {
-	//张3 开 宝马
-	var bmw Car
-	bmw = &Bmw{}
+ //张3 开 宝马
+ var bmw Car
+ bmw = &Bmw{}
 
-	var zhang3 Driver
-	zhang3 = &Zhang_3{}
+ var zhang3 Driver
+ zhang3 = &Zhang_3{}
 
-	zhang3.Drive(bmw)
+ zhang3.Drive(bmw)
 
-	//李4 开 奔驰
-	var benz Car
-	benz = &BenZ{}
+ //李4 开 奔驰
+ var benz Car
+ benz = &BenZ{}
 
-	var li4 Driver
-	li4 = &Li_4{}
+ var li4 Driver
+ li4 = &Li_4{}
 
-	li4.Drive(benz)
+ li4.Drive(benz)
 }
 ```
 
-#### 1.4、里氏代换原则
+### 1.4、里氏代换原则
 
 任何抽象类出现的地方都可以用它的实现类进行替换
 基类适用的，子类一定适用（子类可以扩展父类的功能，但不能改变父类原有的功能）
@@ -259,29 +259,29 @@ import "fmt"
 type ClassA struct{}
 
 func (ca *ClassA) Add(x int, y int) int {
-	return x + y
+ return x + y
 }
 
 type ClassB struct {
-	ClassA
+ ClassA
 }
 
 func (cb *ClassB) Add(a string, b string) string {
-	return a + b
+ return a + b
 }
 
 func main() {
-	a := 10
-	b := 20
-	cb := ClassB{}
-	fmt.Println(cb.ClassA.Add(a, b))
-	x := "hello,"
-	y := "hi"
-	fmt.Println(cb.Add(x, y))
+ a := 10
+ b := 20
+ cb := ClassB{}
+ fmt.Println(cb.ClassA.Add(a, b))
+ x := "hello,"
+ y := "hi"
+ fmt.Println(cb.Add(x, y))
 }
 ```
 
-#### 1.5、接口隔离原则
+### 1.5、接口隔离原则
 
 不应该强迫用户的程序依赖他们不需要的接口方法。
 一个接口应该只提供一种对外功能，不应该把所有操作都封装到一个接口中去。
@@ -297,11 +297,11 @@ package main
 // 假设B类 需要func1 func3 func4
 
 type SomeISP interface {
-	Func1()
-	Func2()
-	Func3()
-	Func4()
-	Func5()
+ Func1()
+ Func2()
+ Func3()
+ Func4()
+ Func5()
 }
 
 // 类A 需要的是1 2 5 但是它还需要实现3 4
@@ -312,7 +312,7 @@ func main() {
 }
 ```
 
-#### 1.6、合成复用原则
+### 1.6、合成复用原则
 
 如果使用继承 会导致父类的任何变换都可能影响到子类，使用组合，则降低了这种
 依赖关系，推荐使用组合而不是继承
@@ -327,48 +327,48 @@ import "fmt"
 type Cat struct{}
 
 func (c *Cat) Eat() {
-	fmt.Println("小猫吃饭")
+ fmt.Println("小猫吃饭")
 }
 
 // 给小猫添加睡觉的方法
 // 通过继承的方式
 
 type CatB struct {
-	Cat
+ Cat
 }
 
 func (cb *CatB) Sleep() {
-	fmt.Println("小猫睡觉")
+ fmt.Println("小猫睡觉")
 }
 
 // 给小猫添加睡觉的方法
 // 通过组合的方式
 
 type CatC struct {
-	Ca Cat
+ Ca Cat
 }
 
 func (cc *CatC) Sleep() {
-	fmt.Println("小猫睡觉")
+ fmt.Println("小猫睡觉")
 }
 
 func main() {
-	c:=Cat{}
-	c.Eat()
+ c:=Cat{}
+ c.Eat()
 
-	cb:=CatB{c}
-	cb.Sleep()
-	cb.Eat() //继承
+ cb:=CatB{c}
+ cb.Sleep()
+ cb.Eat() //继承
 
-	// 组合
-	cc:=CatC{Ca: c}
-	cc.Sleep()
-	cc.Ca.Eat() // 组合
+ // 组合
+ cc:=CatC{Ca: c}
+ cc.Sleep()
+ cc.Ca.Eat() // 组合
 }
 
 ```
 
-#### 1.7、迪米特法则
+### 1.7、迪米特法则
 
 一个对象应当对其他对象尽可能少的了解，从而降低各个对象之间的耦合，提高系统的可维护性。例如在一个程序中，各个模块之间相互调用时，通常会提供一个统一的接口来实现。这样其他模块不需要了解另外一个模块的内部实现细节，这样当一个模块内部的实现发生改变时，不会影响其他模块的使用。（黑盒原理）
 
@@ -384,48 +384,48 @@ import "fmt"
 // 如果两个软件实体无须直接通信，那么就不应当发生直接的相互调用，可以通过第三方转发该调用
 
 type Student struct {
-	Id   string
-	Name string
+ Id   string
+ Name string
 }
 
 type Class struct {
-	Id       string
-	Name     string
-	Students []Student
+ Id       string
+ Name     string
+ Students []Student
 }
 
 func (c Class) PrintStudents() {
-	for _, student := range c.Students {
-		fmt.Println(student)
-	}
+ for _, student := range c.Students {
+  fmt.Println(student)
+ }
 }
 
 type School struct {
-	Id      string
-	Name    string
-	Classes []Class
+ Id      string
+ Name    string
+ Classes []Class
 }
 
 // 这里 school 与 student 没有直接的关系
 func (s School) PrintAllStudents() {
 
-	// 高耦合度的写法
-	// for _, class := range s.Classes {
-	// 	for _, student := range class.Students {
-	// 		fmt.Println(student)
-	// 	}
-	// }
+ // 高耦合度的写法
+ // for _, class := range s.Classes {
+ //  for _, student := range class.Students {
+ //   fmt.Println(student)
+ //  }
+ // }
 
-	// 降低了依赖关系的写法
-	for _, class := range s.Classes {
-		class.PrintStudents()
-	}
+ // 降低了依赖关系的写法
+ for _, class := range s.Classes {
+  class.PrintStudents()
+ }
 }
 ```
 
-### 2、设计模式
+## 2、设计模式
 
-#### 2.1、简单工厂模式
+### 2.1、简单工厂模式
 
 如果没有工厂类
 
@@ -436,45 +436,45 @@ import "fmt"
 
 //水果类
 type Fruit struct {
-	//...
-	//...
-	//...
+ //...
+ //...
+ //...
 }
 
 func (f *Fruit) Show(name string) {
-	if name == "apple" {
-		fmt.Println("我是苹果")
-	} else if name == "banana" {
-		fmt.Println("我是香蕉")
-	} else if name == "pear" {
-		fmt.Println("我是梨")
-	}
+ if name == "apple" {
+  fmt.Println("我是苹果")
+ } else if name == "banana" {
+  fmt.Println("我是香蕉")
+ } else if name == "pear" {
+  fmt.Println("我是梨")
+ }
 }
 
 //创建一个Fruit对象
 func NewFruit(name string) *Fruit {
-	fruit := new(Fruit)
+ fruit := new(Fruit)
 
-	if name == "apple" {
-		//创建apple逻辑
-	} else if name == "banana" {
-		//创建banana逻辑
-	} else if name == "pear" {
-		//创建pear逻辑
-	}
+ if name == "apple" {
+  //创建apple逻辑
+ } else if name == "banana" {
+  //创建banana逻辑
+ } else if name == "pear" {
+  //创建pear逻辑
+ }
 
-	return fruit
+ return fruit
 }
 
 func main() {
-	apple := NewFruit("apple")
-	apple.Show("apple")
+ apple := NewFruit("apple")
+ apple.Show("apple")
 
-	banana := NewFruit("banana")
-	banana.Show("banana")
+ banana := NewFruit("banana")
+ banana.Show("banana")
 
-	pear := NewFruit("pear")
-	pear.Show("pear")
+ pear := NewFruit("pear")
+ pear.Show("pear")
 }
 ```
 
@@ -500,33 +500,33 @@ import "fmt"
 
 // 水果类(抽象接口)
 type Fruit interface {
-	Show() //接口的某方法
+ Show() //接口的某方法
 }
 
 // ======= 基础类模块 =========
 
 type Apple struct {
-	Fruit //为了易于理解显示继承(此行可以省略)
+ Fruit //为了易于理解显示继承(此行可以省略)
 }
 
 func (apple *Apple) Show() {
-	fmt.Println("我是苹果")
+ fmt.Println("我是苹果")
 }
 
 type Banana struct {
-	Fruit
+ Fruit
 }
 
 func (banana *Banana) Show() {
-	fmt.Println("我是香蕉")
+ fmt.Println("我是香蕉")
 }
 
 type Pear struct {
-	Fruit
+ Fruit
 }
 
 func (pear *Pear) Show() {
-	fmt.Println("我是梨")
+ fmt.Println("我是梨")
 }
 
 // ========= 工厂模块  =========
@@ -534,31 +534,31 @@ func (pear *Pear) Show() {
 type Factory struct{}
 
 func (fac *Factory) CreateFruit(kind string) Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	if kind == "apple" {
-		fruit = new(Apple)
-	} else if kind == "banana" {
-		fruit = new(Banana)
-	} else if kind == "pear" {
-		fruit = new(Pear)
-	}
+ if kind == "apple" {
+  fruit = new(Apple)
+ } else if kind == "banana" {
+  fruit = new(Banana)
+ } else if kind == "pear" {
+  fruit = new(Pear)
+ }
 
-	return fruit
+ return fruit
 }
 
 // ==========业务逻辑层==============
 func main() {
-	factory := new(Factory)
+ factory := new(Factory)
 
-	apple := factory.CreateFruit("apple")
-	apple.Show()
+ apple := factory.CreateFruit("apple")
+ apple.Show()
 
-	banana := factory.CreateFruit("banana")
-	banana.Show()
+ banana := factory.CreateFruit("banana")
+ banana.Show()
 
-	pear := factory.CreateFruit("pear")
-	pear.Show()
+ pear := factory.CreateFruit("pear")
+ pear.Show()
 }
 ```
 
@@ -577,10 +577,10 @@ func main() {
 
 适用场景：
 
-1.  工厂类负责创建的对象比较少，由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。
-2.  客户端只知道传入工厂类的参数，对于如何创建对象并不关心。
+1. 工厂类负责创建的对象比较少，由于创建的对象较少，不会造成工厂方法中的业务逻辑太过复杂。
+2. 客户端只知道传入工厂类的参数，对于如何创建对象并不关心。
 
-#### 2.2、工厂模式
+### 2.2、工厂模式
 
 工厂模式里的角色和职责
 
@@ -598,117 +598,117 @@ import "fmt"
 
 //水果类(抽象接口)
 type Fruit interface {
-	Show()	 //接口的某方法
+ Show()  //接口的某方法
 }
 
 //工厂类(抽象接口)
 type AbstractFactory interface {
-	CreateFruit() Fruit //生产水果类(抽象)的生产器方法
+ CreateFruit() Fruit //生产水果类(抽象)的生产器方法
 }
 
 // ======= 基础类模块 =========
 type Apple struct {
-	Fruit  //为了易于理解显示继承(此行可以省略)
+ Fruit  //为了易于理解显示继承(此行可以省略)
 }
 
 func (apple *Apple) Show() {
-	fmt.Println("我是苹果")
+ fmt.Println("我是苹果")
 }
 
 type Banana struct {
-	Fruit
+ Fruit
 }
 
 func (banana *Banana) Show() {
-	fmt.Println("我是香蕉")
+ fmt.Println("我是香蕉")
 }
 
 type Pear struct {
-	Fruit
+ Fruit
 }
 
 func (pear *Pear) Show() {
-	fmt.Println("我是梨")
+ fmt.Println("我是梨")
 }
 
 // ========= 工厂模块  =========
 //具体的苹果工厂
 type AppleFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *AppleFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的苹果
-	fruit = new(Apple)
+ //生产一个具体的苹果
+ fruit = new(Apple)
 
-	return fruit
+ return fruit
 }
 
 //具体的香蕉工厂
 type BananaFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *BananaFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的香蕉
-	fruit = new(Banana)
+ //生产一个具体的香蕉
+ fruit = new(Banana)
 
-	return fruit
+ return fruit
 }
 
 
 //具体的梨工厂
 type PearFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *PearFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的梨
-	fruit = new(Pear)
+ //生产一个具体的梨
+ fruit = new(Pear)
 
-	return fruit
+ return fruit
 }
 
 //======= 业务逻辑层 =======
 func main() {
-	//需求1：需要一个具体的苹果对象
-	//1-先要一个具体的苹果工厂
-	var appleFac AbstractFactory
-	appleFac = new(AppleFactory)
-	//2-生产相对应的具体水果
-	var apple Fruit
-	apple = appleFac.CreateFruit()
+ //需求1：需要一个具体的苹果对象
+ //1-先要一个具体的苹果工厂
+ var appleFac AbstractFactory
+ appleFac = new(AppleFactory)
+ //2-生产相对应的具体水果
+ var apple Fruit
+ apple = appleFac.CreateFruit()
 
-	apple.Show()
+ apple.Show()
 
 
-	//需求2：需要一个具体的香蕉对象
-	//1-先要一个具体的香蕉工厂
-	var bananaFac AbstractFactory
-	bananaFac = new(BananaFactory)
-	//2-生产相对应的具体水果
-	var banana Fruit
-	banana = bananaFac.CreateFruit()
+ //需求2：需要一个具体的香蕉对象
+ //1-先要一个具体的香蕉工厂
+ var bananaFac AbstractFactory
+ bananaFac = new(BananaFactory)
+ //2-生产相对应的具体水果
+ var banana Fruit
+ banana = bananaFac.CreateFruit()
 
-	banana.Show()
+ banana.Show()
 
-	//需求3：需要一个具体的梨对象
-	//1-先要一个具体的梨工厂
-	var pearFac AbstractFactory
-	pearFac = new(PearFactory)
-	//2-生产相对应的具体水果
-	var pear Fruit
-	pear = pearFac.CreateFruit()
+ //需求3：需要一个具体的梨对象
+ //1-先要一个具体的梨工厂
+ var pearFac AbstractFactory
+ pearFac = new(PearFactory)
+ //2-生产相对应的具体水果
+ var pear Fruit
+ pear = pearFac.CreateFruit()
 
-	pear.Show()
+ pear.Show()
 
-	//需求4：需要一个日本的苹果？
+ //需求4：需要一个日本的苹果？
 }
 ```
 
@@ -723,153 +723,153 @@ import "fmt"
 
 //水果类(抽象接口)
 type Fruit interface {
-	Show()	 //接口的某方法
+ Show()  //接口的某方法
 }
 
 //工厂类(抽象接口)
 type AbstractFactory interface {
-	CreateFruit() Fruit //生产水果类(抽象)的生产器方法
+ CreateFruit() Fruit //生产水果类(抽象)的生产器方法
 }
 
 // ======= 基础类模块 =========
 type Apple struct {
-	Fruit  //为了易于理解显示继承(此行可以省略)
+ Fruit  //为了易于理解显示继承(此行可以省略)
 }
 
 func (apple *Apple) Show() {
-	fmt.Println("我是苹果")
+ fmt.Println("我是苹果")
 }
 
 type Banana struct {
-	Fruit
+ Fruit
 }
 
 func (banana *Banana) Show() {
-	fmt.Println("我是香蕉")
+ fmt.Println("我是香蕉")
 }
 
 type Pear struct {
-	Fruit
+ Fruit
 }
 
 func (pear *Pear) Show() {
-	fmt.Println("我是梨")
+ fmt.Println("我是梨")
 }
 
 //(+) 新增一个"日本苹果"
 type JapanApple struct {
-	Fruit
+ Fruit
 }
 
 func (jp *JapanApple) Show() {
-	fmt.Println("我是日本苹果")
+ fmt.Println("我是日本苹果")
 }
 
 // ========= 工厂模块  =========
 //具体的苹果工厂
 type AppleFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *AppleFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的苹果
-	fruit = new(Apple)
+ //生产一个具体的苹果
+ fruit = new(Apple)
 
-	return fruit
+ return fruit
 }
 
 //具体的香蕉工厂
 type BananaFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *BananaFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的香蕉
-	fruit = new(Banana)
+ //生产一个具体的香蕉
+ fruit = new(Banana)
 
-	return fruit
+ return fruit
 }
 
 
 //具体的梨工厂
 type PearFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *PearFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的梨
-	fruit = new(Pear)
+ //生产一个具体的梨
+ fruit = new(Pear)
 
-	return fruit
+ return fruit
 }
 
 //具体的日本工厂
 type JapanAppleFactory struct {
-	AbstractFactory
+ AbstractFactory
 }
 
 func (fac *JapanAppleFactory) CreateFruit() Fruit {
-	var fruit Fruit
+ var fruit Fruit
 
-	//生产一个具体的日本苹果
-	fruit = new(JapanApple)
+ //生产一个具体的日本苹果
+ fruit = new(JapanApple)
 
-	return fruit
+ return fruit
 }
 
 // ========= 业务逻辑层  =========
 func main() {
-	/*
-		本案例为了突出根据依赖倒转原则与面向接口编程特性。
-	    一些变量的定义将使用显示类型声明方式
-	*/
+ /*
+  本案例为了突出根据依赖倒转原则与面向接口编程特性。
+     一些变量的定义将使用显示类型声明方式
+ */
 
-	//需求1：需要一个具体的苹果对象
-	//1-先要一个具体的苹果工厂
-	var appleFac AbstractFactory
-	appleFac = new(AppleFactory)
-	//2-生产相对应的具体水果
-	var apple Fruit
-	apple = appleFac.CreateFruit()
+ //需求1：需要一个具体的苹果对象
+ //1-先要一个具体的苹果工厂
+ var appleFac AbstractFactory
+ appleFac = new(AppleFactory)
+ //2-生产相对应的具体水果
+ var apple Fruit
+ apple = appleFac.CreateFruit()
 
-	apple.Show()
+ apple.Show()
 
 
-	//需求2：需要一个具体的香蕉对象
-	//1-先要一个具体的香蕉工厂
-	var bananaFac AbstractFactory
-	bananaFac = new(BananaFactory)
-	//2-生产相对应的具体水果
-	var banana Fruit
-	banana = bananaFac.CreateFruit()
+ //需求2：需要一个具体的香蕉对象
+ //1-先要一个具体的香蕉工厂
+ var bananaFac AbstractFactory
+ bananaFac = new(BananaFactory)
+ //2-生产相对应的具体水果
+ var banana Fruit
+ banana = bananaFac.CreateFruit()
 
-	banana.Show()
+ banana.Show()
 
-	//需求3：需要一个具体的梨对象
-	//1-先要一个具体的梨工厂
-	var pearFac AbstractFactory
-	pearFac = new(PearFactory)
-	//2-生产相对应的具体水果
-	var pear Fruit
-	pear = pearFac.CreateFruit()
+ //需求3：需要一个具体的梨对象
+ //1-先要一个具体的梨工厂
+ var pearFac AbstractFactory
+ pearFac = new(PearFactory)
+ //2-生产相对应的具体水果
+ var pear Fruit
+ pear = pearFac.CreateFruit()
 
-	pear.Show()
+ pear.Show()
 
-	//需求4：需要一个日本的苹果？
-	//1-先要一个具体的日本评估工厂
-	var japanAppleFac AbstractFactory
-	japanAppleFac = new(JapanAppleFactory)
-	//2-生产相对应的具体水果
-	var japanApple Fruit
-	japanApple = japanAppleFac.CreateFruit()
+ //需求4：需要一个日本的苹果？
+ //1-先要一个具体的日本评估工厂
+ var japanAppleFac AbstractFactory
+ japanAppleFac = new(JapanAppleFactory)
+ //2-生产相对应的具体水果
+ var japanApple Fruit
+ japanApple = japanAppleFac.CreateFruit()
 
-	japanApple.Show()
+ japanApple.Show()
 }
 
 ```
@@ -892,7 +892,7 @@ func main() {
 1. 客户端不知道它所需要的对象的类。
 2. 抽象工厂类通过其子类来指定创建哪个对象。
 
-#### 2.3、抽象工厂模式
+### 2.3、抽象工厂模式
 
 （1）当添加一个新产品的时候，比如葡萄，虽然不用修改代码，但是需要添加大量的类，而且还需要添加相对的工厂。（系统开销，维护成本）
 （2）如果使用同一地域的水果（日本苹果，日本香蕉，日本梨），那么需要分别创建具体的工厂，如果选择出现失误，将会造成混乱，虽然可以加一些约束，但是代码实现变得复杂。
@@ -912,22 +912,22 @@ import "fmt"
 
 // ======= 抽象层 =========
 type AbstractApple interface {
-	ShowApple()
+ ShowApple()
 }
 
 type AbstractBanana interface {
-	ShowBanana()
+ ShowBanana()
 }
 
 type AbstractPear interface {
-	ShowPear()
+ ShowPear()
 }
 
 //抽象工厂
 type AbstractFactory interface {
-	CreateApple() AbstractApple
-	CreateBanana() AbstractBanana
-	CreatePear() AbstractPear
+ CreateApple() AbstractApple
+ CreateBanana() AbstractBanana
+ CreatePear() AbstractPear
 }
 
 // ======== 实现层 =========
@@ -935,175 +935,175 @@ type AbstractFactory interface {
 type ChinaApple struct {}
 
 func (ca *ChinaApple) ShowApple() {
-	fmt.Println("中国苹果")
+ fmt.Println("中国苹果")
 }
 
 type ChinaBanana struct {}
 
 func (cb *ChinaBanana) ShowBanana() {
-	fmt.Println("中国香蕉")
+ fmt.Println("中国香蕉")
 }
 
 type ChinaPear struct {}
 
 func (cp *ChinaPear) ShowPear() {
-	fmt.Println("中国梨")
+ fmt.Println("中国梨")
 }
 
 type ChinaFactory struct {}
 
 func (cf *ChinaFactory) CreateApple() AbstractApple {
-	var apple AbstractApple
+ var apple AbstractApple
 
-	apple = new(ChinaApple)
+ apple = new(ChinaApple)
 
-	return apple
+ return apple
 }
 
 func (cf *ChinaFactory) CreateBanana() AbstractBanana {
-	var banana AbstractBanana
+ var banana AbstractBanana
 
-	banana = new(ChinaBanana)
+ banana = new(ChinaBanana)
 
-	return banana
+ return banana
 }
 
 func (cf *ChinaFactory) CreatePear() AbstractPear {
-	var pear AbstractPear
+ var pear AbstractPear
 
-	pear = new(ChinaPear)
+ pear = new(ChinaPear)
 
-	return pear
+ return pear
 }
 
 /*  日本产品族 */
 type JapanApple struct {}
 
 func (ja *JapanApple) ShowApple() {
-	fmt.Println("日本苹果")
+ fmt.Println("日本苹果")
 }
 
 type JapanBanana struct {}
 
 func (jb *JapanBanana) ShowBanana() {
-	fmt.Println("日本香蕉")
+ fmt.Println("日本香蕉")
 }
 
 type JapanPear struct {}
 
 func (cp *JapanPear) ShowPear() {
-	fmt.Println("日本梨")
+ fmt.Println("日本梨")
 }
 
 type JapanFactory struct {}
 
 func (jf *JapanFactory) CreateApple() AbstractApple {
-	var apple AbstractApple
+ var apple AbstractApple
 
-	apple = new(JapanApple)
+ apple = new(JapanApple)
 
-	return apple
+ return apple
 }
 
 func (jf *JapanFactory) CreateBanana() AbstractBanana {
-	var banana AbstractBanana
+ var banana AbstractBanana
 
-	banana = new(JapanBanana)
+ banana = new(JapanBanana)
 
-	return banana
+ return banana
 }
 
 func (cf *JapanFactory) CreatePear() AbstractPear {
-	var pear AbstractPear
+ var pear AbstractPear
 
-	pear = new(JapanPear)
+ pear = new(JapanPear)
 
-	return pear
+ return pear
 }
 
 /*  美国产品族 */
 type AmericanApple struct {}
 
 func (aa *AmericanApple) ShowApple() {
-	fmt.Println("美国苹果")
+ fmt.Println("美国苹果")
 }
 
 type AmericanBanana struct {}
 
 func (ab *AmericanBanana) ShowBanana() {
-	fmt.Println("美国香蕉")
+ fmt.Println("美国香蕉")
 }
 
 type AmericanPear struct {}
 
 func (ap *AmericanPear) ShowPear() {
-	fmt.Println("美国梨")
+ fmt.Println("美国梨")
 }
 
 type AmericanFactory struct {}
 
 func (af *AmericanFactory) CreateApple() AbstractApple {
-	var apple AbstractApple
+ var apple AbstractApple
 
-	apple = new(AmericanApple)
+ apple = new(AmericanApple)
 
-	return apple
+ return apple
 }
 
 func (af *AmericanFactory) CreateBanana() AbstractBanana {
-	var banana AbstractBanana
+ var banana AbstractBanana
 
-	banana = new(AmericanBanana)
+ banana = new(AmericanBanana)
 
-	return banana
+ return banana
 }
 
 func (af *AmericanFactory) CreatePear() AbstractPear {
-	var pear AbstractPear
+ var pear AbstractPear
 
-	pear = new(AmericanPear)
+ pear = new(AmericanPear)
 
-	return pear
+ return pear
 }
 
 // ======== 业务逻辑层 =======
 func main() {
-	//需求1: 需要美国的苹果、香蕉、梨 等对象
-	//1-创建一个美国工厂
-	var aFac AbstractFactory
-	aFac = new(AmericanFactory)
+ //需求1: 需要美国的苹果、香蕉、梨 等对象
+ //1-创建一个美国工厂
+ var aFac AbstractFactory
+ aFac = new(AmericanFactory)
 
-	//2-生产美国苹果
-	var aApple AbstractApple
-	aApple = aFac.CreateApple()
-	aApple.ShowApple()
+ //2-生产美国苹果
+ var aApple AbstractApple
+ aApple = aFac.CreateApple()
+ aApple.ShowApple()
 
-	//3-生产美国香蕉
-	var aBanana AbstractBanana
-	aBanana = aFac.CreateBanana()
-	aBanana.ShowBanana()
+ //3-生产美国香蕉
+ var aBanana AbstractBanana
+ aBanana = aFac.CreateBanana()
+ aBanana.ShowBanana()
 
-	//4-生产美国梨
-	var aPear AbstractPear
-	aPear = aFac.CreatePear()
-	aPear.ShowPear()
+ //4-生产美国梨
+ var aPear AbstractPear
+ aPear = aFac.CreatePear()
+ aPear.ShowPear()
 
-	//需求2: 需要中国的苹果、香蕉
-	//1-创建一个中国工厂
-	cFac := new(ChinaFactory)
+ //需求2: 需要中国的苹果、香蕉
+ //1-创建一个中国工厂
+ cFac := new(ChinaFactory)
 
-	//2-生产中国苹果
-	cApple := cFac.CreateApple()
-	cApple.ShowApple()
+ //2-生产中国苹果
+ cApple := cFac.CreateApple()
+ cApple.ShowApple()
 
-	//3-生产中国香蕉
-	cBanana := cFac.CreateBanana()
-	cBanana.ShowBanana()
+ //3-生产中国香蕉
+ cBanana := cFac.CreateBanana()
+ cBanana.ShowBanana()
 }
 
 ```
 
-#### 2.4、单例模式
+### 2.4、单例模式
 
 在单例类的内部实现只生成一个实例，同时它提供一个静态的 getInstance()工厂方法，
 让客户可以访问它的唯一实例；为了防止在外部对其实例化，将其构造函数设计为私有；
@@ -1120,13 +1120,13 @@ import "fmt"
 
 /*
 三个要点：
-		一是某个类只能有一个实例；
-		二是它必须自行创建这个实例；
-		三是它必须自行向整个系统提供这个实例。
+  一是某个类只能有一个实例；
+  二是它必须自行创建这个实例；
+  三是它必须自行向整个系统提供这个实例。
 */
 
 /*
-	保证一个类永远只能有一个对象
+ 保证一个类永远只能有一个对象
 */
 
 
@@ -1144,16 +1144,16 @@ var instance *singelton = new(singelton)
 //       答案是不能，因为如果为成员方法就必须要先访问对象、再访问函数
 //        但是类和对象目前都已经私有化，外界无法访问，所以这个方法一定是一个全局普通函数
 func GetInstance() *singelton {
-	return instance
+ return instance
 }
 
 func (s *singelton) SomeThing() {
-	fmt.Println("单例对象的某方法")
+ fmt.Println("单例对象的某方法")
 }
 
 func main() {
-	s := GetInstance()
-	s.SomeThing()
+ s := GetInstance()
+ s.SomeThing()
 }
 ```
 
@@ -1166,8 +1166,8 @@ func main() {
 package main
 
 import (
-	"fmt"
-	"sync"
+ "fmt"
+ "sync"
 )
 
 //定义锁
@@ -1178,29 +1178,29 @@ type singelton struct {}
 var instance *singelton
 
 func GetInstance() *singelton {
-	//为了线程安全，增加互斥
-	lock.Lock()
-	defer lock.Unlock()
+ //为了线程安全，增加互斥
+ lock.Lock()
+ defer lock.Unlock()
 
-	if instance == nil {
-		return new(singelton)
-	} else {
-		return instance
-	}
+ if instance == nil {
+  return new(singelton)
+ } else {
+  return instance
+ }
 }
 
 func (s *singelton) SomeThing() {
-	fmt.Println("单例对象的某方法")
+ fmt.Println("单例对象的某方法")
 }
 
 
 func main() {
-	s := GetInstance()
-	s.SomeThing()
+ s := GetInstance()
+ s.SomeThing()
 }
 ```
 
-#### 2.5、代理模式
+### 2.5、代理模式
 
 是指具有与代理元（被代理的对象）具有相同的接口的类，客户端必须通过代理与被代理的目标类交互，而代理一般在交互的过程中（交互前后），进行某些特别的处理
 这里假设有一个“自己”的角色，正在玩一款网络游戏。称这个网络游戏就是代理模式的“Subject”，表示要做一件事的目标或者对象事件主题。
@@ -1221,14 +1221,14 @@ package main
 import "fmt"
 
 type Goods struct {
-	Kind string   //商品种类
-	Fact bool	  //商品真伪
+ Kind string   //商品种类
+ Fact bool   //商品真伪
 }
 
 // =========== 抽象层 ===========
 //抽象的购物主题Subject
 type Shopping interface {
-	Buy(goods *Goods) //某任务
+ Buy(goods *Goods) //某任务
 }
 
 
@@ -1237,7 +1237,7 @@ type Shopping interface {
 type KoreaShopping struct {}
 
 func (ks *KoreaShopping) Buy(goods *Goods) {
-	fmt.Println("去韩国进行了购物, 买了 ", goods.Kind)
+ fmt.Println("去韩国进行了购物, 买了 ", goods.Kind)
 }
 
 
@@ -1245,86 +1245,86 @@ func (ks *KoreaShopping) Buy(goods *Goods) {
 type AmericanShopping struct {}
 
 func (as *AmericanShopping) Buy(goods *Goods) {
-	fmt.Println("去美国进行了购物, 买了 ", goods.Kind)
+ fmt.Println("去美国进行了购物, 买了 ", goods.Kind)
 }
 
 //具体的购物主题， 实现了shopping， 去非洲购物
 type AfrikaShopping struct {}
 
 func (as *AfrikaShopping) Buy(goods *Goods) {
-	fmt.Println("去非洲进行了购物, 买了 ", goods.Kind)
+ fmt.Println("去非洲进行了购物, 买了 ", goods.Kind)
 }
 
 
 //海外的代理
 type OverseasProxy struct {
-	shopping Shopping //代理某个主题，这里是抽象类型
+ shopping Shopping //代理某个主题，这里是抽象类型
 }
 
 func (op *OverseasProxy) Buy(goods *Goods) {
-	// 1. 先验货
-	if (op.distinguish(goods) == true) {
-		//2. 进行购买
-		op.shopping.Buy(goods) //调用原被代理的具体主题任务
-		//3 海关安检
-		op.check(goods)
-	}
+ // 1. 先验货
+ if (op.distinguish(goods) == true) {
+  //2. 进行购买
+  op.shopping.Buy(goods) //调用原被代理的具体主题任务
+  //3 海关安检
+  op.check(goods)
+ }
 }
 
 //创建一个代理,并且配置关联被代理的主题
 func NewProxy(shopping Shopping) Shopping {
-	return &OverseasProxy{shopping}
+ return &OverseasProxy{shopping}
 }
 
 //验货流程
 func (op *OverseasProxy) distinguish(goods *Goods) bool {
-	fmt.Println("对[", goods.Kind,"]进行了辨别真伪.")
-	if (goods.Fact == false) {
-		fmt.Println("发现假货",goods.Kind,", 不应该购买。")
-	}
-	return goods.Fact
+ fmt.Println("对[", goods.Kind,"]进行了辨别真伪.")
+ if (goods.Fact == false) {
+  fmt.Println("发现假货",goods.Kind,", 不应该购买。")
+ }
+ return goods.Fact
 }
 
 //安检流程
 func (op *OverseasProxy) check(goods *Goods) {
-	fmt.Println("对[",goods.Kind,"] 进行了海关检查， 成功的带回祖国")
+ fmt.Println("对[",goods.Kind,"] 进行了海关检查， 成功的带回祖国")
 }
 
 
 func main() {
-	g1 := Goods{
-		Kind: "韩国面膜",
-		Fact: true,
-	}
+ g1 := Goods{
+  Kind: "韩国面膜",
+  Fact: true,
+ }
 
-	g2 := Goods{
-		Kind: "CET4证书",
-		Fact: false,
-	}
+ g2 := Goods{
+  Kind: "CET4证书",
+  Fact: false,
+ }
 
-	//如果不使用代理来完成从韩国购买任务
-	var shopping Shopping
-	shopping = new(KoreaShopping) //具体的购买主题
+ //如果不使用代理来完成从韩国购买任务
+ var shopping Shopping
+ shopping = new(KoreaShopping) //具体的购买主题
 
-	//1-先验货
-	if g1.Fact == true {
-		fmt.Println("对[", g1.Kind,"]进行了辨别真伪.")
-		//2-去韩国购买
-		shopping.Buy(&g1)
-		//3-海关安检
-		fmt.Println("对[",g1.Kind,"] 进行了海关检查， 成功的带回祖国")
-	}
+ //1-先验货
+ if g1.Fact == true {
+  fmt.Println("对[", g1.Kind,"]进行了辨别真伪.")
+  //2-去韩国购买
+  shopping.Buy(&g1)
+  //3-海关安检
+  fmt.Println("对[",g1.Kind,"] 进行了海关检查， 成功的带回祖国")
+ }
 
-	fmt.Println("---------------以下是 使用 代理模式-------")
-	var overseasProxy Shopping
-	overseasProxy = NewProxy(shopping)
-	overseasProxy.Buy(&g1)
-	overseasProxy.Buy(&g2)
+ fmt.Println("---------------以下是 使用 代理模式-------")
+ var overseasProxy Shopping
+ overseasProxy = NewProxy(shopping)
+ overseasProxy.Buy(&g1)
+ overseasProxy.Buy(&g2)
 }
 
 ```
 
-#### 2.6、装饰模式
+### 2.6、装饰模式
 
 装饰模式(Decorator Pattern)：动态地给一个对象增加一些额外的职责，就增加对象功能来说，装饰模式比生成子类实现更为灵活。装饰模式是一种对象结构型模式。
 
@@ -1341,12 +1341,12 @@ import "fmt"
 // ---------- 抽象层 ----------
 //抽象的构件
 type Phone interface {
-	Show() //构件的功能
+ Show() //构件的功能
 }
 
 //装饰器基础类（该类本应该为interface，但是Golang interface语法不可以有成员属性）
 type Decorator struct {
-	phone Phone
+ phone Phone
 }
 
 func (d *Decorator) Show() {}
@@ -1357,68 +1357,68 @@ func (d *Decorator) Show() {}
 type HuaWei struct {}
 
 func (hw *HuaWei) Show() {
-	fmt.Println("秀出了HuaWei手机")
+ fmt.Println("秀出了HuaWei手机")
 }
 
 type XiaoMi struct{}
 
 func (xm *XiaoMi) Show() {
-	fmt.Println("秀出了XiaoMi手机")
+ fmt.Println("秀出了XiaoMi手机")
 }
 
 // 具体的装饰器类
 type MoDecorator struct {
-	Decorator   //继承基础装饰器类(主要继承Phone成员属性)
+ Decorator   //继承基础装饰器类(主要继承Phone成员属性)
 }
 
 func (md *MoDecorator) Show() {
-	md.phone.Show() //调用被装饰构件的原方法
-	fmt.Println("贴膜的手机") //装饰额外的方法
+ md.phone.Show() //调用被装饰构件的原方法
+ fmt.Println("贴膜的手机") //装饰额外的方法
 }
 
 func NewMoDecorator(phone Phone) Phone {
-	return &MoDecorator{Decorator{phone}}
+ return &MoDecorator{Decorator{phone}}
 }
 
 type KeDecorator struct {
-	Decorator   //继承基础装饰器类(主要继承Phone成员属性)
+ Decorator   //继承基础装饰器类(主要继承Phone成员属性)
 }
 
 func (kd *KeDecorator) Show() {
-	kd.phone.Show()
-	fmt.Println("手机壳的手机") //装饰额外的方法
+ kd.phone.Show()
+ fmt.Println("手机壳的手机") //装饰额外的方法
 }
 
 func NewKeDecorator(phone Phone) Phone {
-	return &KeDecorator{Decorator{phone}}
+ return &KeDecorator{Decorator{phone}}
 }
 
 
 // ------------ 业务逻辑层 ---------
 func main() {
-	var huawei Phone
-	huawei = new(HuaWei)
-	huawei.Show()	 //调用原构件方法
+ var huawei Phone
+ huawei = new(HuaWei)
+ huawei.Show()  //调用原构件方法
 
-	fmt.Println("---------")
-	//用贴膜装饰器装饰，得到新功能构件
-	var moHuawei Phone
-	moHuawei = NewMoDecorator(huawei) //通过HueWei ---> MoHuaWei
-	moHuawei.Show() //调用装饰后新构件的方法
+ fmt.Println("---------")
+ //用贴膜装饰器装饰，得到新功能构件
+ var moHuawei Phone
+ moHuawei = NewMoDecorator(huawei) //通过HueWei ---> MoHuaWei
+ moHuawei.Show() //调用装饰后新构件的方法
 
-	fmt.Println("---------")
-	var keHuawei Phone
-	keHuawei = NewKeDecorator(huawei) //通过HueWei ---> KeHuaWei
-	keHuawei.Show()
+ fmt.Println("---------")
+ var keHuawei Phone
+ keHuawei = NewKeDecorator(huawei) //通过HueWei ---> KeHuaWei
+ keHuawei.Show()
 
-	fmt.Println("---------")
-	var keMoHuaWei Phone
-	keMoHuaWei = NewMoDecorator(keHuawei) //通过KeHuaWei ---> KeMoHuaWei
-	keMoHuaWei.Show()
+ fmt.Println("---------")
+ var keMoHuaWei Phone
+ keMoHuaWei = NewMoDecorator(keHuawei) //通过KeHuaWei ---> KeMoHuaWei
+ keMoHuaWei.Show()
 }
 ```
 
-#### 2.7、适配器模式
+### 2.7、适配器模式
 
 将一个类的接口转换成客户希望的另外一个接口。使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。
 
@@ -1433,21 +1433,21 @@ import "fmt"
 
 //适配的目标
 type V5 interface {
-	Use5V()
+ Use5V()
 }
 
 //业务类，依赖V5接口
 type Phone struct {
-	v V5
+ v V5
 }
 
 func NewPhone(v V5) *Phone {
-	return &Phone{v}
+ return &Phone{v}
 }
 
 func (p *Phone) Charge() {
-	fmt.Println("Phone进行充电...")
-	p.v.Use5V()
+ fmt.Println("Phone进行充电...")
+ p.v.Use5V()
 }
 
 
@@ -1455,43 +1455,42 @@ func (p *Phone) Charge() {
 type V220 struct {}
 
 func (v *V220) Use220V() {
-	fmt.Println("使用220V的电压")
+ fmt.Println("使用220V的电压")
 }
 
 //电源适配器
 type Adapter struct {
-	v220 *V220
+ v220 *V220
 }
 
 func (a *Adapter) Use5V() {
-	fmt.Println("使用适配器进行充电")
+ fmt.Println("使用适配器进行充电")
 
-	//调用适配者的方法
-	a.v220.Use220V()
+ //调用适配者的方法
+ a.v220.Use220V()
 }
 
 func NewAdapter(v220 *V220) *Adapter {
-	return &Adapter{v220}
+ return &Adapter{v220}
 }
 
 
 
 // ------- 业务逻辑层 -------
 func main() {
-	iphone := NewPhone(NewAdapter(new(V220)))
+ iphone := NewPhone(NewAdapter(new(V220)))
 
-	iphone.Charge()
+ iphone.Charge()
 }
 ```
 
-#### 2.8、外观模式
+### 2.8、外观模式
 
 根据迪米特法则，如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用
 Facade 模式也叫外观模式，是由 GoF 提出的 23 种设计模式中的一种。Facade 模式为一组具有类似功能的类群，
 比如类库，子系统等等，提供一个一致的简单的界面。这个一致的简单的界面被称作 facade。
 
 **外观模式中的角色与职责**
-
 Façade(外观角色)：为调用方, 定义简单的调用接口。
 SubSystem(子系统角色)：功能提供者。指提供功能的类群（模块或子系统）
 
@@ -1503,73 +1502,73 @@ import "fmt"
 type SubSystemA struct {}
 
 func (sa *SubSystemA) MethodA() {
-	fmt.Println("子系统方法A")
+ fmt.Println("子系统方法A")
 }
 
 type SubSystemB struct {}
 
 func (sb *SubSystemB) MethodB() {
-	fmt.Println("子系统方法B")
+ fmt.Println("子系统方法B")
 }
 
 type SubSystemC struct {}
 
 func (sc *SubSystemC) MethodC() {
-	fmt.Println("子系统方法C")
+ fmt.Println("子系统方法C")
 }
 
 type SubSystemD struct {}
 
 func (sd *SubSystemD) MethodD() {
-	fmt.Println("子系统方法D")
+ fmt.Println("子系统方法D")
 }
 
 //外观模式，提供了一个外观类， 简化成一个简单的接口供使用
 type Facade struct {
-	a *SubSystemA
-	b *SubSystemB
-	c *SubSystemC
-	d *SubSystemD
+ a *SubSystemA
+ b *SubSystemB
+ c *SubSystemC
+ d *SubSystemD
 }
 
 func (f *Facade) MethodOne() {
-	f.a.MethodA()
-	f.b.MethodB()
+ f.a.MethodA()
+ f.b.MethodB()
 }
 
 
 func (f *Facade) MethodTwo() {
-	f.c.MethodC()
-	f.d.MethodD()
+ f.c.MethodC()
+ f.d.MethodD()
 }
 
 func main() {
-	//如果不用外观模式实现MethodA() 和 MethodB()
-	sa := new(SubSystemA)
-	sa.MethodA()
-	sb := new(SubSystemB)
-	sb.MethodB()
+ //如果不用外观模式实现MethodA() 和 MethodB()
+ sa := new(SubSystemA)
+ sa.MethodA()
+ sb := new(SubSystemB)
+ sb.MethodB()
 
-	fmt.Println("-----------")
-	//使用外观模式
-	f := Facade{
-		a: new(SubSystemA),
-		b: new(SubSystemB),
-		c: new(SubSystemC),
-		d: new(SubSystemD),
-	}
+ fmt.Println("-----------")
+ //使用外观模式
+ f := Facade{
+  a: new(SubSystemA),
+  b: new(SubSystemB),
+  c: new(SubSystemC),
+  d: new(SubSystemD),
+ }
 
-	//调用外观包裹方法
-	f.MethodOne()
+ //调用外观包裹方法
+ f.MethodOne()
 }
 ```
 
-#### 2.9、模板方法模式
+### 2.9、模板方法模式
 
 AbstractClass（抽象类）：在抽象类中定义了一系列基本操作(PrimitiveOperations)，这些基本操作可以是具体的，也可以是抽象的，每一个基本操作对应算法的一个步骤，在其子类中可以重定义或实现这些步骤。同时，在抽象类中实现了一个模板方法(Template Method)，用于定义一个算法的框架，模板方法不仅可以调用在抽象类中实现的基本方法，也可以调用在抽象类的子类中实现的基本方法，还可以调用其他对象中的方法。
 ConcreteClass（具体子类）：它是抽象类的子类，用于实现在父类中声明的抽象基本操作以完成子类特定算法的步骤，也可以覆盖在父类中已经实现的具体基本操作。
 
-#### 2.10、命令模式
+### 2.10、命令模式
 
 将一个请求封装为一个对象，从而让我们可用不同的请求对客户进行参数化；对请求排队或者记录请求日志，以及支持可撤销的操作。命令模式是一种对象行为型模式，其别名为动作(Action)模式或事务(Transaction)模式。
 
@@ -1583,7 +1582,7 @@ Invoker（调用者）：调用者即请求发送者，它通过命令对象来�
 
 Receiver（接收者）：接收者执行与请求相关的操作，它具体实现对请求的业务处理。
 
-#### 2.10、策略模式
+### 2.10、策略模式
 
 策略模式的角色:
 
@@ -1604,7 +1603,7 @@ ConcreteStrategy(具体策略类):它实现了在抽象类中声明的算法，�
 (1) 客户端必须知道所有的策略类，并自行决定使用哪一个策略类。这就意味着客户端必须理解这些算法的区别，以便适时选择恰当的算法。换言之，策略模式只适用于客户端知道所有的算法或行为的情况。
 (2) 策略模式将造成系统产生很多具体策略类，任何细小的变化都将导致系统要增加一个新的具体策略类。
 
-#### 2.11、观察者模式
+### 2.11、观察者模式
 
 观察者模式是用于建立一种对象与对象之间的依赖关系，一个对象发生改变时将自动通知其他对象，其他对象将相应作出反应。
 在观察者模式中，发生改变的对象称为观察目标，而被通知的对象称为观察者，一个观察目标可以对应多个观察者，
